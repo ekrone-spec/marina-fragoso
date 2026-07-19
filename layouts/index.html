@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Marina Fragoso — Magazine Page Templates</title>
+  <link rel="stylesheet" href="magazine.css" />
+</head>
+<body>
+  <main class="deck">
+    <header class="deck-head">
+      <h1>The Page Templates</h1>
+      <p>Editorial spread layouts for the Marina Fragoso magazine — page anatomy modelled on
+      the GQ feature and the Santal layout system. Every page carries the same chrome: the
+      <b>kicker</b> (her signature, the clickable site logo) at the top, and a <b>footer</b>
+      with the site menu and the page folio. The page-flip motion comes later from the
+      flipbook engine; these are the static designs it will turn.</p>
+    </header>
+
+    <!-- ============================ COVER ============================= -->
+    <p class="tpl-label">00 — Cover</p>
+    <div class="spread t-cover">
+      <section class="page" data-chrome="light">
+        <img class="bleed" src="assets/cover.jpg" alt="Marina Fragoso cover" />
+        <div class="cover-copy">
+          <p class="issue">Issue 01 — Summer 2026</p>
+          <p class="cover-line">Fine jewelry, made in New York.</p>
+        </div>
+        <div class="foot">
+          <nav><a href="#" class="on">Latest</a><a href="#">Bespoke</a><a href="#">About</a><a href="#">Shop</a><a href="#">Contact</a></nav>
+          <span class="folio">Cover</span>
+        </div>
+      </section>
+    </div>
+
+    <!-- ========================= T1 FEATURE =========================== -->
+    <p class="tpl-label">01 — Feature spread</p>
+    <div class="spread t-feature">
+      <!-- LEFT: text page -->
+      <section class="page">
+        <a class="kicker" href="#"><img src="assets/logo.png" alt="Marina Fragoso" /></a>
+        <div class="head">
+          <p class="eyebrow accent">The Feature — No.01</p>
+          <span class="display h-sm">Caught the</span>
+          <span class="display h-lg accent">Light</span>
+        </div>
+        <p class="deck-copy">The Inside-Out hoop began as a question — how to set a stone so it
+        catches the sun from every angle. Three years, and a great many failures, later, here
+        it is.</p>
+        <p class="byline">Words <b>Marina Fragoso</b> &nbsp;·&nbsp; Photography <b>Charlie Gray</b> &nbsp;·&nbsp; Rio de Janeiro</p>
+        <div class="foot">
+          <nav><a href="#" class="on">Latest</a><a href="#">Bespoke</a><a href="#">About</a><a href="#">Shop</a><a href="#">Contact</a></nav>
+        </div>
+      </section>
+      <!-- RIGHT: image page -->
+      <section class="page" data-chrome="light">
+        <img class="bleed" src="assets/cover.jpg" alt="Diamond hoop worn at the ear" style="object-position:40% 45%" />
+        <p class="caption rot cap-tr">Inside-Out hoops, 4.91ct diamond, 18kt white gold — photographed in Ipanema</p>
+        <div class="pull-br">
+          <p class="pull">“I wanted a hoop that throws light back at you — set from the <em>inside</em> out, so it never stops moving.”
+            <span class="src">Marina Fragoso</span></p>
+        </div>
+        <div class="foot">
+          <nav><span></span></nav>
+          <span class="folio">04</span>
+        </div>
+      </section>
+    </div>
+    <p class="tpl-note">Anatomy: kicker (logo) · eyebrow/kicker-label · giant script headline with scale contrast ·
+    stand-first/deck · byline · full-bleed portrait · rotated image caption · pull quote · footer menu + folio.</p>
+
+    <!-- ======================== T2 STATEMENT ========================= -->
+    <p class="tpl-label">02 — Statement / philosophy spread</p>
+    <div class="spread t-statement">
+      <!-- LEFT: black text page -->
+      <section class="page dark">
+        <a class="kicker" href="#"><img src="assets/logo.png" alt="Marina Fragoso" /></a>
+        <div class="pad">
+          <div class="rule"></div>
+          <p class="quote">We hold every piece to the standard of something <em>kept for lifetimes</em> —
+          made by hand, in one city, to outlast the moment it marks.</p>
+          <p class="attrib">Marina Fragoso — Founder</p>
+        </div>
+        <span class="label">Our Philosophy</span>
+        <div class="foot">
+          <nav><a href="#">Latest</a><a href="#">Bespoke</a><a href="#" class="on">About</a><a href="#">Shop</a><a href="#">Contact</a></nav>
+          <span class="folio">18</span>
+        </div>
+      </section>
+      <!-- RIGHT: image bleeding across gutter -->
+      <section class="page" data-chrome="light">
+        <img class="bleed" src="assets/collection.jpg" alt="Hand at the face, stacked gold and diamond rings" style="object-position:50% 30%" />
+        <div class="foot"><nav><span></span></nav><span class="folio">19</span></div>
+      </section>
+      <!-- giant word bleeds across the gutter, over both pages -->
+      <h2 class="bigword">Marina</h2>
+    </div>
+    <p class="tpl-note">Santal "philosophy" archetype: a giant script word bleeding along the gutter (gold on black,
+    the jewelry equivalent of Santal's orange), a short emphasised pull statement, a labelled section marker,
+    and a portrait carrying across the spread.</p>
+
+    <!-- ========================= T3 INDEX ============================ -->
+    <p class="tpl-label">03 — Index / Contact spread</p>
+    <div class="spread t-index">
+      <!-- LEFT: gold contents page -->
+      <section class="page gold">
+        <a class="kicker" href="#"><img src="assets/logo.png" alt="Marina Fragoso" /></a>
+        <div class="pad">
+          <p class="eyebrow" style="color:var(--ink)">In this issue</p>
+          <ul class="contents">
+            <li><span>01</span> The Everyday Stack</li>
+            <li><span>02</span> Caught the Light</li>
+            <li><span>03</span> Only for You — Bespoke</li>
+            <li><span>04</span> Where It Began</li>
+            <li><span>05</span> The Collection</li>
+          </ul>
+          <p class="credit">All jewelry designed &amp; made in New York City by Marina Fragoso.
+          Photographed in Rio de Janeiro, Summer 2026.</p>
+        </div>
+        <div class="foot" data-chrome="dark">
+          <nav><a href="#">Latest</a><a href="#">Bespoke</a><a href="#">About</a><a href="#">Shop</a><a href="#" class="on">Contact</a></nav>
+          <span class="folio">66</span>
+        </div>
+      </section>
+      <!-- RIGHT: contact grid + portrait + masthead -->
+      <section class="page">
+        <span class="ring" style="border-color:rgba(23,20,15,.25)"></span>
+        <a class="kicker" href="#"><img src="assets/logo.png" alt="Marina Fragoso" /></a>
+        <div class="cell tl"><h4>Visit</h4><p>By appointment · New York City</p></div>
+        <div class="cell tr"><h4>Appointments</h4><p>hello@marinafragoso.com</p></div>
+        <div class="cell bl"><h4>Bespoke</h4><p>Tell me what you dream of.</p></div>
+        <div class="cell br"><h4>Press</h4><p>press@marinafragoso.com</p></div>
+        <div class="mast">
+          <span>The</span>
+          <img class="mid" src="assets/appointment.jpg" alt="Portrait" />
+          <span>Mag.</span>
+        </div>
+        <div class="foot"><nav><span></span></nav><span class="folio">67</span></div>
+      </section>
+    </div>
+    <p class="tpl-note">Santal "contact" archetype: bold colour field with a contents list, a 2×2 contact grid,
+    a thin concentric-ring motif, and the masthead split across a small portrait ("The ▢ Mag.").</p>
+
+  </main>
+</body>
+</html>
