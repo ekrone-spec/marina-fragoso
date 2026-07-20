@@ -153,7 +153,7 @@ a { color: inherit; }
 .t-statement .quote { font-size: 2.2cqw; line-height: 1.34; max-width: 24cqw; }
 .t-statement .quote em { font-style: italic; font-weight: 600; }
 .t-statement .attrib { margin-top: 2cqw; font-size: .95cqw; letter-spacing: .14em; text-transform: uppercase; color: rgba(246,242,234,.65); }
-.t-statement .label { position: absolute; left: 5cqw; bottom: 25cqw; font-size: 1.4cqw;
+.t-statement .label { position: absolute; left: 5cqw; bottom: 12cqw; font-size: 1.4cqw;
   letter-spacing: .04em; border-bottom: 1px solid currentColor; padding-bottom: .5cqw; z-index: 6; }
 /* giant word — spread-level so it bleeds across the gutter onto the photo */
 .t-statement .bigword {
@@ -233,19 +233,43 @@ a { color: inherit; }
 /* =========================================================================
    TEMPLATE 5 — Multiple pieces (Santal gallery: title + hero facing a grid)
    ========================================================================= */
-.t-gallery .g-head { position: absolute; top: 9.5cqw; left: 5cqw; right: 5cqw; z-index: 3; }
-.t-gallery .g-head .display { font-size: 6.4cqw; display: block; }
-.t-gallery .hero { position: absolute; left: 5cqw; right: 5cqw; top: 24cqw; bottom: 9cqw; overflow: hidden; z-index: 3; }
-.t-gallery .hero img { width: 100%; height: 100%; object-fit: cover; }
-.t-gallery .hero .gcap { position: absolute; left: 1.2cqw; bottom: 1.2cqw; color: #fff;
-  font-size: .92cqw; letter-spacing: .12em; text-transform: uppercase; text-shadow: 0 1px 8px rgba(0,0,0,.6); }
-.t-gallery .g-grid { position: absolute; inset: 9.5cqw 5cqw 10.5cqw; display: grid;
-  grid-template-columns: 1fr 1fr; gap: 2.2cqw 2.6cqw; align-content: start; z-index: 3; }
-.t-gallery .g-cell img { width: 100%; aspect-ratio: 5 / 4; object-fit: cover; }
-.t-gallery .g-cell .cap { font-size: .95cqw; line-height: 1.35; margin-top: .6cqw; color: var(--ink-70); }
-.t-gallery .g-cell .cap b { display: block; color: var(--ink); font-weight: 600;
-  letter-spacing: .04em; text-transform: uppercase; font-size: .92cqw; }
-.t-gallery .g-cell .num { color: var(--ink); }
+.t-gallery .gg { position: absolute; inset: 9.5cqw 5cqw 9cqw; display: grid;
+  grid-template-columns: 1fr 1fr; grid-template-rows: repeat(3, 1fr); gap: 2cqw 2.4cqw; z-index: 3; }
+.t-gallery .gg-title { grid-column: 1 / -1; align-self: center; }
+.t-gallery .gg-title .display { font-size: 5cqw; display: block; }
+.t-gallery .gg-cell { display: flex; flex-direction: column; min-height: 0; }
+.t-gallery .gg-cell a { flex: 1; min-height: 0; overflow: hidden; display: block; }
+.t-gallery .gg-cell img { width: 100%; height: 100%; object-fit: cover; }
+.t-gallery .gg-cell .cap { font-size: .88cqw; line-height: 1.3; margin-top: .5cqw; color: var(--ink-70); }
+.t-gallery .gg-cell .cap b { display: block; color: var(--ink); font-weight: 600;
+  letter-spacing: .03em; text-transform: uppercase; font-size: .82cqw; }
+
+/* T6 product-detail (image + thumbnails | full PDP info) */
+.t-product .pd-media { position: absolute; inset: 11cqw 6cqw 15cqw; overflow: hidden; background: var(--sand); z-index: 3; }
+.t-product .pd-media img { width: 100%; height: 100%; object-fit: cover; }
+.t-product .pd-thumbs { position: absolute; left: 6cqw; bottom: 8cqw; display: flex; gap: 1cqw; z-index: 4; }
+.t-product .pd-thumbs img { width: 6cqw; height: 6cqw; object-fit: cover; border: 1px solid var(--ink-40); }
+.t-product .pd-info { position: absolute; inset: 11cqw 6cqw 10cqw; z-index: 3; }
+.t-product .pd-name { font-size: 2cqw; letter-spacing: .02em; margin: 0 0 .5cqw; }
+.t-product .p-price { font-size: 1.5cqw; margin: 0 0 1.4cqw; }
+.t-product .p-desc { font-size: 1.15cqw; line-height: 1.55; color: var(--ink-70); margin: 0 0 1.4cqw; max-width: 30cqw; }
+.t-product .p-spec { display: grid; grid-template-columns: auto 1fr; gap: .5cqw 1.4cqw; margin: 0 0 1.4cqw; }
+.t-product .p-spec dt { font-size: .8cqw; letter-spacing: .14em; text-transform: uppercase; color: var(--ink-45); align-self: center; }
+.t-product .p-spec dd { font-size: 1.05cqw; margin: 0; }
+.t-product .p-variant { display: inline-block; border: 1px solid var(--ink-40); padding: .7cqw 1.2cqw; font-size: 1cqw; margin: 0 0 1.2cqw; }
+.t-product .p-note { font-size: .95cqw; color: var(--ink-45); margin: 0 0 1.4cqw; }
+.t-product .p-actions { display: flex; align-items: center; gap: 2cqw; }
+.t-product .p-actions .add { background: var(--ink); color: var(--paper); padding: 1cqw 2.4cqw;
+  font-size: .85cqw; letter-spacing: .18em; text-transform: uppercase; text-decoration: none; }
+.t-product .p-actions .contact { font-size: 1cqw; color: var(--ink-70); text-decoration: underline; text-underline-offset: 3px; }
+
+/* per-page swipe/click CTA (injected on every non-cover page) */
+.page-cta { position: absolute; left: 0; right: 0; bottom: 6.4cqw; text-align: center; z-index: 5;
+  font-size: .92cqw; letter-spacing: .2em; text-transform: uppercase; opacity: .6; pointer-events: none; }
+.page-cta .swipe { display: none; } .page-cta .click { display: inline; }
+.page[data-chrome="light"] .page-cta, .page.dark .page-cta, .page.sky .page-cta {
+  color: var(--paper); opacity: .85; text-shadow: 0 1px 6px rgba(0,0,0,.4); }
+@media (max-width: 820px) { .page-cta .click { display: none; } .page-cta .swipe { display: inline; } }
 
 /* =========================================================================
    TEMPLATE 6 — Individual piece (Santal "philosophy": full-bleed image +
