@@ -194,8 +194,8 @@ a { color: inherit; }
 .t-cover .page { grid-column: 1; }
 .spread.t-cover::after { display: none; }
 /* home masthead: much larger, in the upper half */
-.t-cover .kicker { top: 8cqw; }
-.t-cover .kicker img { height: 12cqw; }
+.t-cover .kicker { top: 9cqw; left: 6cqw; right: 6cqw; }
+.t-cover .kicker img { height: auto; width: 100%; }
 /* breakpoint-aware flip hint (home page only) */
 .flip-hint { margin-top: 2.4cqw; font-size: 1.9cqw; letter-spacing: .24em; text-transform: uppercase; opacity: .9; }
 .flip-hint .swipe { display: none; }
