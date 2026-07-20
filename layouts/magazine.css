@@ -44,7 +44,7 @@ a { color: inherit; }
 .deck-head { margin: 0 0 3rem; }
 .deck-head h1 { font-family: var(--script); font-weight: 400; font-size: clamp(2.4rem,6vw,4rem); margin: 0 0 .3rem; }
 .deck-head p { color: var(--ink-70); max-width: 60ch; line-height: 1.55; margin: .4rem 0; }
-.tpl-label { font-size: .72rem; letter-spacing: .2em; text-transform: uppercase; color: var(--bronze); margin: 3.4rem 0 .8rem; }
+.tpl-label { font-size: .72rem; letter-spacing: .2em; text-transform: uppercase; color: var(--ink-70); margin: 3.4rem 0 .8rem; }
 .tpl-note { font-size: .82rem; color: var(--ink-70); margin: .6rem 0 0; max-width: 68ch; line-height: 1.5; }
 
 /* =========================================================================
@@ -76,10 +76,10 @@ a { color: inherit; }
 
 /* ---- Persistent chrome: KICKER (logo, top) + FOOTER (menu + folio) ----- */
 .kicker {
-  position: absolute; top: 4.2cqw; left: 0; right: 0; z-index: 6;
+  position: absolute; top: 3cqw; left: 0; right: 0; z-index: 6;
   display: flex; justify-content: center; text-decoration: none;
 }
-.kicker img { height: 3.1cqw; width: auto; }
+.kicker img { height: 4.6cqw; width: auto; }
 .page.dark .kicker img, .page.sky .kicker img,
 .page[data-chrome="light"] .kicker img { filter: invert(1) brightness(2); }
 
@@ -93,6 +93,8 @@ a { color: inherit; }
 .foot a.on { opacity: 1; border-bottom: 1px solid currentColor; padding-bottom: 2px; }
 .foot .folio { opacity: .72; letter-spacing: .1em; }
 .page[data-chrome="light"] .foot, .page.dark .foot, .page.sky .foot { color: var(--paper); }
+.page[data-chrome="light"] .foot { text-shadow: 0 1px 6px rgba(0,0,0,.5); }
+.page[data-chrome="light"] .kicker { filter: drop-shadow(0 1px 8px rgba(0,0,0,.45)); }
 
 /* content padding inside a page (clear of chrome) */
 .pad { position: absolute; inset: 10cqw 4.2cqw 9cqw; z-index: 3; }
@@ -100,9 +102,8 @@ a { color: inherit; }
 /* =========================================================================
    Type primitives (cqw-scaled so layouts hold at any size)
    ========================================================================= */
-.eyebrow { font-size: 1.15cqw; letter-spacing: .24em; text-transform: uppercase; color: var(--bronze); margin: 0 0 1.6cqw; }
-.eyebrow.accent { color: var(--sky); }
-.page.dark .eyebrow, .page.sky .eyebrow { color: var(--gold); }
+.eyebrow { font-size: 1.15cqw; letter-spacing: .24em; text-transform: uppercase; color: var(--ink-70); margin: 0 0 1.6cqw; }
+.page.dark .eyebrow, .page.sky .eyebrow { color: rgba(255,255,255,.72); }
 
 .display { font-family: var(--script); font-weight: 400; line-height: .9; letter-spacing: .005em; }
 .byline { font-size: 1.02cqw; letter-spacing: .1em; text-transform: uppercase; color: var(--ink-70); }
@@ -132,7 +133,7 @@ a { color: inherit; }
    ========================================================================= */
 .t-feature .head { position: absolute; top: 8.5cqw; left: 5cqw; right: 4cqw; z-index: 4; }
 .t-feature .h-sm { font-size: 7.5cqw; display: block; }
-.t-feature .h-lg { font-size: 17cqw; display: block; margin-top: -0.5cqw; white-space: nowrap; color: var(--sky); }
+.t-feature .h-lg { font-size: 17cqw; display: block; margin-top: -0.5cqw; white-space: nowrap; color: var(--ink); }
 .t-feature .deck-copy { position: absolute; left: 5cqw; top: 40cqw; width: 26cqw; z-index: 4; font-size: 1.25cqw; }
 .t-feature .byline { position: absolute; left: 5cqw; bottom: 8cqw; z-index: 4; }
 
@@ -157,8 +158,8 @@ a { color: inherit; }
 /* giant word — spread-level so it bleeds across the gutter onto the photo */
 .t-statement .bigword {
   position: absolute; left: 3cqw; bottom: 2cqw; z-index: 5; margin: 0;
-  font-family: var(--script); font-size: 23cqw; line-height: .8; color: var(--gold);
-  white-space: nowrap; text-shadow: 0 2px 24px rgba(0,0,0,.55);
+  font-family: var(--script); font-size: 23cqw; line-height: .8; color: var(--paper);
+  white-space: nowrap; text-shadow: 0 2px 20px rgba(0,0,0,.7), 0 0 2px rgba(0,0,0,.5);
 }
 
 /* =========================================================================
@@ -192,6 +193,17 @@ a { color: inherit; }
   width: min(100%, 560px); margin-inline: auto; }
 .t-cover .page { grid-column: 1; }
 .spread.t-cover::after { display: none; }
+/* home masthead: much larger, in the upper half */
+.t-cover .kicker { top: 8cqw; }
+.t-cover .kicker img { height: 12cqw; }
+/* breakpoint-aware flip hint (home page only) */
+.flip-hint { margin-top: 2.4cqw; font-size: 1.9cqw; letter-spacing: .24em; text-transform: uppercase; opacity: .9; }
+.flip-hint .swipe { display: none; }
+.flip-hint .click { display: inline; }
+@media (max-width: 820px) {
+  .flip-hint .click { display: none; }
+  .flip-hint .swipe { display: inline; }
+}
 .t-cover .cover-copy { position: absolute; left: 0; right: 0; bottom: 8cqw; text-align: center; z-index: 4; color: #fff; }
 .t-cover .issue { font-size: 1cqw; letter-spacing: .3em; text-transform: uppercase; text-shadow: 0 1px 12px rgba(0,0,0,.5); }
 .t-cover .cover-line { font-size: 1.3cqw; letter-spacing: .04em; margin-top: .6cqw; text-shadow: 0 1px 12px rgba(0,0,0,.5); }

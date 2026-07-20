@@ -9,7 +9,7 @@
 <body>
   <main class="deck">
     <header class="deck-head">
-      <h1>The Page Templates</h1>
+      <h1>The Page Layout</h1>
       <p>Editorial spread layouts for the Marina Fragoso magazine — page anatomy modelled on
       the GQ feature and the Santal layout system. Every page carries the same chrome: the
       <b>kicker</b> (her signature, the clickable site logo) at the top, and a <b>footer</b>
@@ -21,10 +21,12 @@
     <p class="tpl-label">00 — Cover</p>
     <div class="spread t-cover">
       <section class="page" data-chrome="light">
-        <img class="bleed" src="assets/cover.jpg" alt="Marina Fragoso cover" />
+        <img class="bleed" src="assets/collection.jpg" alt="Marina Fragoso cover" style="object-position:50% 22%" />
+        <a class="kicker" href="#" aria-label="Marina Fragoso — home"><img src="assets/logo.png" alt="Marina Fragoso" /></a>
         <div class="cover-copy">
           <p class="issue">Issue 01 — Summer 2026</p>
           <p class="cover-line">Fine jewelry, made in New York.</p>
+          <p class="flip-hint"><span class="click">Click to flip pages</span><span class="swipe">Swipe to flip pages</span></p>
         </div>
         <div class="foot">
           <nav><a href="#" class="on">Latest</a><a href="#">Bespoke</a><a href="#">About</a><a href="#">Shop</a><a href="#">Contact</a></nav>
@@ -50,18 +52,20 @@
         <p class="byline">Words <b>Marina Fragoso</b> &nbsp;·&nbsp; Photography <b>Charlie Gray</b> &nbsp;·&nbsp; Rio de Janeiro</p>
         <div class="foot">
           <nav><a href="#" class="on">Latest</a><a href="#">Bespoke</a><a href="#">About</a><a href="#">Shop</a><a href="#">Contact</a></nav>
+          <span class="folio">03</span>
         </div>
       </section>
       <!-- RIGHT: image page -->
       <section class="page" data-chrome="light">
         <img class="bleed" src="assets/cover.jpg" alt="Diamond hoop worn at the ear" style="object-position:40% 45%" />
+        <a class="kicker" href="#"><img src="assets/logo.png" alt="Marina Fragoso" /></a>
         <p class="caption rot cap-tr">Inside-Out hoops, 4.91ct diamond, 18kt white gold — photographed in Ipanema</p>
         <div class="pull-br">
           <p class="pull">“I wanted a hoop that throws light back at you — set from the <em>inside</em> out, so it never stops moving.”
             <span class="src">Marina Fragoso</span></p>
         </div>
         <div class="foot">
-          <nav><span></span></nav>
+          <nav><a href="#" class="on">Latest</a><a href="#">Bespoke</a><a href="#">About</a><a href="#">Shop</a><a href="#">Contact</a></nav>
           <span class="folio">04</span>
         </div>
       </section>
@@ -90,13 +94,14 @@
       <!-- RIGHT: image bleeding across gutter -->
       <section class="page" data-chrome="light">
         <img class="bleed" src="assets/collection.jpg" alt="Hand at the face, stacked gold and diamond rings" style="object-position:50% 30%" />
-        <div class="foot"><nav><span></span></nav><span class="folio">19</span></div>
+        <a class="kicker" href="#"><img src="assets/logo.png" alt="Marina Fragoso" /></a>
+        <div class="foot"><nav><a href="#">Latest</a><a href="#">Bespoke</a><a href="#" class="on">About</a><a href="#">Shop</a><a href="#">Contact</a></nav><span class="folio">19</span></div>
       </section>
       <!-- giant word bleeds across the gutter, over both pages -->
       <h2 class="bigword">Marina</h2>
     </div>
-    <p class="tpl-note">Santal "philosophy" archetype: a giant script word bleeding along the gutter (gold on black,
-    the jewelry equivalent of Santal's orange), a short emphasised pull statement, a labelled section marker,
+    <p class="tpl-note">Santal "philosophy" archetype: a giant script word bleeding along the gutter (white on black),
+    a short emphasised pull statement, a labelled section marker,
     and a portrait carrying across the spread.</p>
 
     <!-- ========================= T3 INDEX ============================ -->
@@ -135,7 +140,7 @@
           <img class="mid" src="assets/appointment.jpg" alt="Portrait" />
           <span>Mag.</span>
         </div>
-        <div class="foot"><nav><span></span></nav><span class="folio">67</span></div>
+        <div class="foot"><nav><a href="#">Latest</a><a href="#">Bespoke</a><a href="#">About</a><a href="#">Shop</a><a href="#" class="on">Contact</a></nav><span class="folio">67</span></div>
       </section>
     </div>
     <p class="tpl-note">Santal "contact" archetype: bold colour field with a contents list, a 2×2 contact grid,
