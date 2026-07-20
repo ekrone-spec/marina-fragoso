@@ -42,7 +42,7 @@ a { color: inherit; }
 /* ---- Review deck scaffolding ------------------------------------------ */
 .deck { max-width: 1180px; margin: 0 auto; padding: clamp(24px, 5vw, 72px) clamp(16px, 4vw, 48px); }
 .deck-head { margin: 0 0 3rem; }
-.deck-head h1 { font-family: var(--script); font-weight: 400; font-size: clamp(2.4rem,6vw,4rem); margin: 0 0 .3rem; }
+.deck-head h1 { font-family: var(--script); font-weight: 400; font-size: clamp(2.4rem,6vw,4rem); margin: 0 0 .3rem; text-transform: lowercase; }
 .deck-head p { color: var(--ink-70); max-width: 60ch; line-height: 1.55; margin: .4rem 0; }
 .tpl-label { font-size: .72rem; letter-spacing: .2em; text-transform: uppercase; color: var(--ink-70); margin: 3.4rem 0 .8rem; }
 .tpl-note { font-size: .82rem; color: var(--ink-70); margin: .6rem 0 0; max-width: 68ch; line-height: 1.5; }
@@ -105,7 +105,7 @@ a { color: inherit; }
 .eyebrow { font-size: 1.15cqw; letter-spacing: .24em; text-transform: uppercase; color: var(--ink-70); margin: 0 0 1.6cqw; }
 .page.dark .eyebrow, .page.sky .eyebrow { color: rgba(255,255,255,.72); }
 
-.display { font-family: var(--script); font-weight: 400; line-height: .9; letter-spacing: .005em; }
+.display { font-family: var(--script); font-weight: 400; line-height: .9; letter-spacing: .005em; text-transform: lowercase; }
 .byline { font-size: 1.02cqw; letter-spacing: .1em; text-transform: uppercase; color: var(--ink-70); }
 .byline b { color: var(--ink); font-weight: 600; }
 .page.dark .byline { color: rgba(246,242,234,.7); } .page.dark .byline b { color: #fff; }
@@ -159,7 +159,7 @@ a { color: inherit; }
 .t-statement .bigword {
   position: absolute; left: 3cqw; bottom: 2cqw; z-index: 5; margin: 0;
   font-family: var(--script); font-size: 23cqw; line-height: .8; color: var(--paper);
-  white-space: nowrap; text-shadow: 0 2px 20px rgba(0,0,0,.7), 0 0 2px rgba(0,0,0,.5);
+  white-space: nowrap; text-transform: lowercase; text-shadow: 0 2px 20px rgba(0,0,0,.7), 0 0 2px rgba(0,0,0,.5);
 }
 
 /* =========================================================================
