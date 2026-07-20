@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Marina Fragoso — Magazine</title>
+  <meta name="description" content="Fine jewelry, made in New York. Flip through the issue.">
+  <link rel="stylesheet" href="flipbook/flipbook.css">
+  <link rel="stylesheet" href="magazine.css">
+  <link rel="stylesheet" href="book.css">
+</head>
+<body>
+  <main id="book" aria-label="Marina Fragoso — magazine"></main>
+
+  <script src="vendor/page-flip.browser.js"></script>
+  <script src="flipbook/flipbook.js"></script>
+  <script>
+    // Menu label -> destination page index (built order below)
+    var GO = { latest: 1, bespoke: 7, about: 3, shop: 9, contact: 5 };
+
+    var SWIPE = '<div class="page-cta"><span class="swipe">Swipe for more →</span></div>';
+
+    function wireChrome(root, isCover) {
+      // kicker/logo -> cover
+      root.querySelectorAll('.kicker').forEach(function (k) {
+        k.setAttribute('data-go', '0'); k.removeAttribute('href');
+      });
+      // footer menu -> section targets
+      root.querySelectorAll('.foot nav a, .back-index a').forEach(function (a) {
+        var key = (a.textContent || '').trim().toLowerCase();
+        if (GO[key] != null) { a.setAttribute('data-go', GO[key]); a.removeAttribute('href'); }
+      });
+      // swipe hint on each magazine page (mobile only)
+      if (!isCover) root.querySelectorAll('.page').forEach(function (p) { p.insertAdjacentHTML('beforeend', SWIPE); });
+    }
+
+    function half(spread, side) {
+      var mag = document.createElement('div');
+      mag.className = 'mag mag-' + side;
+      var clone = spread.cloneNode(true);
+      wireChrome(clone, false);
+      mag.appendChild(clone);
+      return mag.outerHTML;
+    }
+
+    function coverPage(spread) {
+      var mag = document.createElement('div');
+      mag.className = 'mag mag-cover';
+      var clone = spread.cloneNode(true);
+      wireChrome(clone, true);
+      mag.appendChild(clone);
+      return mag.outerHTML;
+    }
+
+    var BACK = '<div class="mag mag-cover"><div class="spread t-cover"><section class="page back-cover">' +
+      '<a class="kicker" data-go="0"><img class="bc-logo" src="assets/logo.png" alt="Marina Fragoso"></a>' +
+      '<p class="bc-end display">the end</p>' +
+      '<p class="bc-credit">© <span class="yr"></span> Marina Fragoso. Site by <a href="https://tcstudio.io" target="_blank" rel="noopener">Tree Crown Studio</a>.</p>' +
+      '</section></div></div>';
+
+    fetch('../layouts/index.html')
+      .then(function (r) { return r.text(); })
+      .then(function (txt) {
+        var doc = new DOMParser().parseFromString(txt, 'text/html');
+        var spreads = Array.prototype.slice.call(doc.querySelectorAll('.spread'));
+        var pages = [];
+        spreads.forEach(function (sp) {
+          if (sp.classList.contains('t-cover')) {
+            pages.push({ slug: 'cover', html: coverPage(sp) });
+          } else {
+            var slug = (sp.className.match(/t-([\w]+)/) || [,'pg'])[1];
+            pages.push({ slug: slug + '-l', html: half(sp, 'left') });
+            pages.push({ slug: slug + '-r', html: half(sp, 'right') });
+          }
+        });
+        pages.push({ slug: 'back', html: BACK });
+
+        var book = new Flipbook('#book', { pages: pages, duration: 900, breakpoint: 1024 });
+
+        // fill year(s)
+        document.querySelectorAll('.yr').forEach(function (y) { y.textContent = new Date().getFullYear(); });
+
+        // menu clicks riffle; never let them reach the flip engine
+        ['pointerdown', 'touchstart', 'mousedown'].forEach(function (type) {
+          document.addEventListener(type, function (e) {
+            if (e.target.closest && e.target.closest('[data-go]')) e.stopPropagation();
+          }, true);
+        });
+        document.addEventListener('click', function (e) {
+          var b = e.target.closest && e.target.closest('[data-go]');
+          if (!b) return;
+          e.stopPropagation(); e.preventDefault();
+          book.riffleTo(parseInt(b.getAttribute('data-go'), 10));
+        }, true);
+      });
+  </script>
+</body>
+</html>

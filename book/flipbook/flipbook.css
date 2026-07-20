@@ -1,0 +1,87 @@
+/* =========================================================================
+   Flipbook v3 styles. Theme via the CSS variables on .fb-root.
+   The stage has an EXPLICIT width (never a grid auto-track) and no ancestor
+   of a StPageFlip parent is ever transformed.
+   ========================================================================= */
+
+.fb-root {
+  --fb-paper: #f7f4ee;          /* page background */
+  --fb-ink: #1a1817;            /* page text */
+  --fb-bg: #201c1a;             /* backdrop beside the spread */
+  --fb-ratio: 0.707;            /* single page aspect (w/h). 0.707 ≈ A-series */
+  --fb-seam: rgba(0,0,0,0.34);  /* darkness at the center of the gutter */
+
+  position: relative;
+  width: 100%;
+  height: 100%;
+  min-height: 100%;
+  overflow: hidden;
+  background: var(--fb-bg);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  outline: none;
+  user-select: none;
+  -webkit-user-select: none;
+  -webkit-tap-highlight-color: transparent;
+  /* The engine owns every gesture — without these, iOS Safari intermittently
+     claims swipes for scrolling/navigation and the flip stops responding. */
+  touch-action: none;
+  overscroll-behavior: none;
+}
+.fb-page, .fb-page * { user-select: none; -webkit-user-select: none; }
+
+/* ---- main stage: the magazine IS the viewport ------------------------------ */
+.fb-stage { position: relative; width: 100vw; height: 100dvh; }
+.fb-book { width: 100%; height: 100%; }
+
+.fb-page {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  background: var(--fb-paper);
+  color: var(--fb-ink);
+  overflow: hidden;
+  box-sizing: border-box;
+}
+.fb-page-img { display: block; width: 100%; height: 100%; object-fit: cover; }
+.fb-page-overlay { position: absolute; inset: 0; }
+
+/* Partner pages that let the covers rest alone (wide mode) while remaining
+   ordinary soft pages. Painted the backdrop colour — NOT transparent, because
+   StPageFlip doesn't repaint beneath its pages, so a see-through page would
+   show the stale previous spread instead of "nothing". */
+.fb-page--blank { background: var(--fb-bg); }
+
+
+/* The book's drop shadow lives on the STAGE, not on StPageFlip's own parent —
+   a filter there would create a stacking context that flattens the engine's
+   internal z-order and breaks the seam layering below. */
+.fb-stage { filter: drop-shadow(0 18px 40px rgba(0,0,0,0.4)); }
+
+/* ---- gutter seam ------------------------------------------------------------
+   Soft dark line down the spine of a facing-page spread. StPageFlip stacks
+   resting pages at z 3 and the turning page at z 5 (shadows at 10), so z 4
+   puts the seam over the resting spread but UNDER the page crossing it. */
+.fb-seam {
+  position: absolute; top: 0; bottom: 0; left: 50%;
+  width: 6%; max-width: 90px;
+  transform: translateX(-50%);
+  pointer-events: none; z-index: 4; opacity: 0;
+  transition: opacity 0.25s ease;
+  background: linear-gradient(90deg,
+    rgba(0,0,0,0) 0%,
+    rgba(0,0,0,0.05) 30%,
+    var(--fb-seam) 48%, var(--fb-seam) 52%,
+    rgba(0,0,0,0.05) 70%,
+    rgba(0,0,0,0) 100%);
+}
+.fb-root.fb-seam-on .fb-seam { opacity: 1; }
+
+
+/* ---- a11y ------------------------------------------------------------------ */
+.fb-live {
+  position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px;
+  overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; border: 0;
+}
+.fb-root:focus-visible { box-shadow: inset 0 0 0 2px #2c6e9e; }

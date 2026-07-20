@@ -1,0 +1,41 @@
+/* Flipbook overrides — host one magazine page per StPageFlip page.
+   Each flip page contains the FULL spread markup at 200% width, translated so
+   only its left or right magazine-page shows. This reuses the layout CSS and
+   its cqw sizing verbatim (cqw stays relative to the full spread). */
+
+html, body { margin: 0; height: 100%; background: #201c1a; overflow: hidden; }
+#book { position: fixed; inset: 0; }
+.fb-root { --fb-bg: #201c1a; --fb-paper: #F6F2EA; --fb-seam: rgba(0,0,0,.28); }
+
+/* the magazine spread, hosted inside a flip page and slid to show one half */
+.mag { position: absolute; top: 0; height: 100%; width: 200%; }
+.mag-left  { left: 0; }
+.mag-right { left: -100%; }
+.mag-cover { position: absolute; inset: 0; width: 100%; }
+
+.mag .spread {
+  width: 100% !important; height: 100% !important; max-width: none !important;
+  margin: 0 !important; aspect-ratio: auto !important; box-shadow: none !important;
+}
+.mag .spread::after { display: none; }            /* StPageFlip draws the seam */
+.mag-cover .spread.t-cover {
+  width: 100% !important; height: 100% !important; max-width: none !important; margin: 0 !important;
+}
+
+/* swipe hint — mobile only; no "click to continue" (clicking a page edge flips) */
+.page-cta {
+  position: absolute; left: 0; right: 0; bottom: 6cqw; text-align: center; z-index: 5;
+  font-size: .95cqw; letter-spacing: .2em; text-transform: uppercase; opacity: .6; pointer-events: none;
+}
+.page[data-chrome="light"] .page-cta, .page.dark .page-cta, .page.sky .page-cta {
+  color: var(--paper); opacity: .85; text-shadow: 0 1px 6px rgba(0,0,0,.4);
+}
+@media (min-width: 1024px) { .page-cta { display: none; } }
+
+/* minimal back cover */
+.back-cover { display: flex; flex-direction: column; align-items: center; justify-content: center;
+  background: var(--paper); gap: 6cqw; text-align: center; }
+.back-cover .bc-logo { width: 30cqw; height: auto; }
+.back-cover .bc-end { font-family: var(--script); text-transform: lowercase; font-size: 7cqw; margin: 0; }
+.back-cover .bc-credit { font-size: 1.1cqw; letter-spacing: .04em; color: var(--ink-60); margin: 0; }
+.back-cover .bc-credit a { color: inherit; text-decoration: underline; text-underline-offset: 2px; }
