@@ -208,6 +208,62 @@ a { color: inherit; }
 .t-cover .issue { font-size: 1cqw; letter-spacing: .3em; text-transform: uppercase; text-shadow: 0 1px 12px rgba(0,0,0,.5); }
 .t-cover .cover-line { font-size: 1.3cqw; letter-spacing: .04em; margin-top: .6cqw; text-shadow: 0 1px 12px rgba(0,0,0,.5); }
 
+/* =========================================================================
+   TEMPLATE 4 — Bespoke (Santal "Editor's Eye": inset media + article + signature,
+   facing a bold panel with a large vertical title)
+   ========================================================================= */
+.t-bespoke .b-media { position: absolute; top: 9.5cqw; left: 5cqw; right: 5cqw; height: 23cqw; overflow: hidden; z-index: 3; }
+.t-bespoke .b-media img { width: 100%; height: 100%; object-fit: cover; }
+.t-bespoke .b-head { position: absolute; top: 33cqw; left: 5cqw; right: 5cqw; z-index: 3; }
+.t-bespoke .b-head .display { font-size: 5cqw; display: block; white-space: nowrap; }
+.t-bespoke .b-body { position: absolute; top: 41cqw; left: 5cqw; width: 40cqw; z-index: 3;
+  font-size: 1.12cqw; line-height: 1.6; color: var(--ink-70); }
+.t-bespoke .b-body p { margin: 0 0 .8em; }
+.t-bespoke .b-sign { position: absolute; bottom: 9cqw; left: 5cqw; font-family: var(--script);
+  text-transform: lowercase; font-size: 3cqw; color: var(--ink-70); z-index: 3; }
+/* right: bold panel */
+.t-bespoke .vert { position: absolute; left: 3.5cqw; top: 50%; transform-origin: left center;
+  transform: translateY(-50%) rotate(-90deg); white-space: nowrap; z-index: 3; }
+.t-bespoke .vert .display { font-size: 8cqw; color: var(--paper); }
+.t-bespoke .panel-media { position: absolute; right: 5cqw; top: 13cqw; width: 22cqw; height: 30cqw; overflow: hidden; z-index: 3; }
+.t-bespoke .panel-media img { width: 100%; height: 100%; object-fit: cover; }
+.t-bespoke .panel-cta { position: absolute; right: 5cqw; bottom: 12cqw; width: 26cqw; text-align: right; z-index: 3; color: var(--paper); }
+.t-bespoke .panel-cta .lede { color: rgba(246,242,234,.82); font-size: 1.2cqw; margin: 0 0 1cqw; }
+
+/* =========================================================================
+   TEMPLATE 5 — Multiple pieces (Santal gallery: title + hero facing a grid)
+   ========================================================================= */
+.t-gallery .g-head { position: absolute; top: 9.5cqw; left: 5cqw; right: 5cqw; z-index: 3; }
+.t-gallery .g-head .display { font-size: 6.4cqw; display: block; }
+.t-gallery .hero { position: absolute; left: 5cqw; right: 5cqw; top: 24cqw; bottom: 9cqw; overflow: hidden; z-index: 3; }
+.t-gallery .hero img { width: 100%; height: 100%; object-fit: cover; }
+.t-gallery .hero .gcap { position: absolute; left: 1.2cqw; bottom: 1.2cqw; color: #fff;
+  font-size: .92cqw; letter-spacing: .12em; text-transform: uppercase; text-shadow: 0 1px 8px rgba(0,0,0,.6); }
+.t-gallery .g-grid { position: absolute; inset: 9.5cqw 5cqw 10.5cqw; display: grid;
+  grid-template-columns: 1fr 1fr; gap: 2.2cqw 2.6cqw; align-content: start; z-index: 3; }
+.t-gallery .g-cell img { width: 100%; aspect-ratio: 5 / 4; object-fit: cover; }
+.t-gallery .g-cell .cap { font-size: .95cqw; line-height: 1.35; margin-top: .6cqw; color: var(--ink-70); }
+.t-gallery .g-cell .cap b { display: block; color: var(--ink); font-weight: 600;
+  letter-spacing: .04em; text-transform: uppercase; font-size: .92cqw; }
+.t-gallery .g-cell .num { color: var(--ink); }
+
+/* =========================================================================
+   TEMPLATE 6 — Individual piece (Santal "philosophy": full-bleed image +
+   detail block + giant name across the gutter)
+   ========================================================================= */
+.t-piece .p-detail { position: absolute; inset: 10cqw 5cqw 22cqw 5cqw; z-index: 4; }
+.t-piece .p-name { font-size: 1.4cqw; letter-spacing: .04em; text-transform: uppercase; margin: 0 0 1.4cqw; }
+.t-piece .p-spec { display: grid; grid-template-columns: auto 1fr; gap: .5cqw 1.6cqw; margin: 0 0 1.6cqw; }
+.t-piece .p-spec dt { font-size: .82cqw; letter-spacing: .14em; text-transform: uppercase; color: var(--ink-45); }
+.t-piece .p-spec dd { font-size: 1.05cqw; margin: 0; }
+.t-piece .p-desc { font-size: 1.15cqw; line-height: 1.6; color: var(--ink-70); max-width: 26cqw; margin: 0 0 1.8cqw; }
+.t-piece .p-price { font-size: 1.6cqw; margin: 0 0 1.4cqw; }
+.t-piece .label { position: absolute; left: 5cqw; bottom: 25cqw; font-size: 1.4cqw;
+  letter-spacing: .04em; border-bottom: 1px solid currentColor; padding-bottom: .5cqw; z-index: 6; }
+.t-piece .bigword { position: absolute; left: 3cqw; bottom: 2cqw; z-index: 5; margin: 0;
+  font-family: var(--script); text-transform: lowercase; font-size: 23cqw; line-height: .8;
+  color: var(--paper); white-space: nowrap; text-shadow: 0 2px 20px rgba(0,0,0,.7), 0 0 2px rgba(0,0,0,.5); }
+
 @media (max-width: 640px) {
   .deck { padding: 20px 12px; }
 }
