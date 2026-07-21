@@ -17,6 +17,7 @@
   <script>
     // Menu label -> destination page index (built order below)
     var GO = { latest: 1, bespoke: 7, about: 3, shop: 9, contact: 5 };
+    var PRODUCT = 11;   // the individual-piece spread
 
     var SWIPE = '<div class="page-cta"><span class="swipe">Swipe for more →</span></div>';
 
@@ -28,35 +29,42 @@
       // footer menu -> section targets
       root.querySelectorAll('.foot nav a, .back-index a').forEach(function (a) {
         var key = (a.textContent || '').trim().toLowerCase();
-        if (GO[key] != null) { a.setAttribute('data-go', GO[key]); a.removeAttribute('href'); }
+        if (GO[key] != null) a.setAttribute('data-go', GO[key]);
+      });
+      // every product tile / "view" link opens the product page
+      root.querySelectorAll('.gg-cell a, .plate-item, .pick-link').forEach(function (a) {
+        a.setAttribute('data-go', PRODUCT);
+      });
+      // CRITICAL: any remaining link/button must also be flagged, otherwise a tap
+      // near a page corner starts a fold that wedges mid-peel on mobile.
+      root.querySelectorAll('a, button, input').forEach(function (a) {
+        if (!a.hasAttribute('data-go')) a.setAttribute('data-inert', '');
+        a.removeAttribute('href');
+        a.setAttribute('draggable', 'false');
       });
       // swipe hint on each magazine page (mobile only)
       if (!isCover) root.querySelectorAll('.page').forEach(function (p) { p.insertAdjacentHTML('beforeend', SWIPE); });
     }
 
-    function half(spread, side) {
-      var mag = document.createElement('div');
-      mag.className = 'mag mag-' + side;
+    function wrap(spread, kind) {
+      var fit = document.createElement('div');
+      fit.className = 'pgfit ' + kind;
+      var clip = document.createElement('div');
+      clip.className = 'halfclip ' + kind;
       var clone = spread.cloneNode(true);
-      wireChrome(clone, false);
-      mag.appendChild(clone);
-      return mag.outerHTML;
+      wireChrome(clone, kind === 'cover');
+      clip.appendChild(clone);
+      fit.appendChild(clip);
+      return fit.outerHTML;
     }
+    function half(spread, side) { return wrap(spread, side); }
+    function coverPage(spread) { return wrap(spread, 'cover'); }
 
-    function coverPage(spread) {
-      var mag = document.createElement('div');
-      mag.className = 'mag mag-cover';
-      var clone = spread.cloneNode(true);
-      wireChrome(clone, true);
-      mag.appendChild(clone);
-      return mag.outerHTML;
-    }
-
-    var BACK = '<div class="mag mag-cover"><div class="spread t-cover"><section class="page back-cover">' +
+    var BACK = '<div class="pgfit cover"><div class="halfclip cover"><div class="spread t-cover"><section class="page back-cover">' +
       '<a class="kicker" data-go="0"><img class="bc-logo" src="assets/logo.png" alt="Marina Fragoso"></a>' +
       '<p class="bc-end display">the end</p>' +
       '<p class="bc-credit">© <span class="yr"></span> Marina Fragoso. Site by <a href="https://tcstudio.io" target="_blank" rel="noopener">Tree Crown Studio</a>.</p>' +
-      '</section></div></div>';
+      '</section></div></div></div>';
 
     fetch('../layouts/index.html')
       .then(function (r) { return r.text(); })
@@ -80,18 +88,26 @@
         // fill year(s)
         document.querySelectorAll('.yr').forEach(function (y) { y.textContent = new Date().getFullYear(); });
 
-        // menu clicks riffle; never let them reach the flip engine
+        // In-page controls must suppress pointerdown/touchstart/mousedown at CAPTURE
+        // phase — otherwise a tap near a page corner starts a fold that wedges
+        // mid-peel on mobile. This covers inert links/buttons too, not just [data-go].
+        var HIT = '[data-go],[data-inert],a,button,input';
         ['pointerdown', 'touchstart', 'mousedown'].forEach(function (type) {
           document.addEventListener(type, function (e) {
-            if (e.target.closest && e.target.closest('[data-go]')) e.stopPropagation();
+            if (e.target.closest && e.target.closest(HIT)) e.stopPropagation();
           }, true);
         });
         document.addEventListener('click', function (e) {
-          var b = e.target.closest && e.target.closest('[data-go]');
-          if (!b) return;
-          e.stopPropagation(); e.preventDefault();
-          book.riffleTo(parseInt(b.getAttribute('data-go'), 10));
+          var hit = e.target.closest && e.target.closest(HIT);
+          if (!hit) return;
+          e.stopPropagation();
+          var href = hit.getAttribute('href') || '';
+          if (/^https?:/.test(href)) return;      // real external link — let it open
+          e.preventDefault();
+          var go = hit.getAttribute('data-go');
+          if (go != null) book.riffleTo(parseInt(go, 10));
         }, true);
+        document.addEventListener('dragstart', function (e) { e.preventDefault(); }, true);
       });
   </script>
 </body>

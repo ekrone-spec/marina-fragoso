@@ -143,7 +143,7 @@ a { color: inherit; }
   background: linear-gradient(to top, rgba(0,0,0,.62), rgba(0,0,0,0) 42%);
 }
 .t-feature .cap-tr { top: 9cqw; right: 4.2cqw; }
-.t-feature .pull-br { position: absolute; left: 6cqw; right: 5cqw; bottom: 9cqw; z-index: 4; }
+.t-feature .pull-br { position: absolute; left: 6cqw; right: 9.5cqw; bottom: 9cqw; z-index: 4; }
 .t-feature .pull-br .pull { text-align: right; }
 
 /* =========================================================================
