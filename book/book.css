@@ -7,19 +7,23 @@ html, body { margin: 0; height: 100%; background: #201c1a; overflow: hidden; }
 #book { position: fixed; inset: 0; }
 .fb-root { --fb-bg: #201c1a; --fb-paper: #F6F2EA; --fb-seam: rgba(0,0,0,.28); }
 
-/* Outer surround on desktop reads as the desk the book rests on. */
-.fb-spread .fb-page { background: var(--fb-bg); }
+/* ---- book size -----------------------------------------------------------
+   Desktop: constrain the STAGE to the magazine's open-spread aspect (1.545)
+   and centre it, so each sheet is exactly one magazine page — correct type
+   scale, no squashing, and no backdrop bands beside a turning page.
+   Mobile keeps the full viewport (a page fills the screen). */
+/* Guarded by the engine's breakpoint so a narrow viewport can never inherit
+   the spread constraint mid-remount (which would squash the stage). */
+@media (min-width: 1024px) {
+  .fb-spread .fb-stage {
+    width: min(100vw, calc(100dvh * 1.545));
+    height: min(100dvh, calc(100vw / 1.545));
+  }
+}
 
 /* ---- the page slot ------------------------------------------------------ */
-.pgfit { position: absolute; inset: 0; display: flex; align-items: center; overflow: hidden; }
-.pgfit.left  { justify-content: flex-end; }   /* page hugs the spine */
-.pgfit.right { justify-content: flex-start; }
-.pgfit.cover { justify-content: flex-start; }
-
+.pgfit { position: absolute; inset: 0; overflow: hidden; }
 .halfclip { position: relative; width: 100%; height: 100%; overflow: hidden; }
-/* Desktop spread: lock the magazine page to its design aspect so a short/wide
-   viewport can never squash the layout (fixes overlap + oversized type). */
-.fb-spread .halfclip { width: auto; height: 100%; aspect-ratio: .7725; max-width: 100%; }
 
 .halfclip .spread {
   position: absolute; top: 0; height: 100% !important; width: 200% !important;

@@ -116,7 +116,14 @@
     for (var i = 0; i < this.N; i++) add(i);
     if (this.wide) add(null, 'fb-page--blank');
 
-    var vw = window.innerWidth, vh = window.innerHeight;
+    // MF deviation from the stock skill: measure the STAGE, not the window, so
+    // CSS can constrain the book to the magazine's page aspect on desktop.
+    // Viewport-sized sheets made each page wider than a magazine page on wide
+    // monitors, which squashed the fixed-proportion layouts and left backdrop
+    // bands beside the turning sheet. The stage is full-viewport on mobile, so
+    // portrait behaviour is unchanged.
+    var vw = this.stage.clientWidth || window.innerWidth,
+        vh = this.stage.clientHeight || window.innerHeight;
     var cfg = {
       width: this.wide ? Math.round(vw / 2) : vw,
       height: vh,
